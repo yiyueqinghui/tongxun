@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>主页</h1>
+    <button class="btn">点击我推送数据到服务端</button>
+</body>
+<script>
+// 连接服务器；
+let ws = new WebSocket("ws://localhost:8181");
+ws.onopen = function(){
+    console.log("连接成功...");
+}
+// ws.onmessage = function(e){
+//     // console.log(e);
+//     console.log(e.data);
+// }
+ws.addEventListener("message",function(e){
+    console.log(e.data);
+})
+
+document.querySelector(".btn").onclick = function(){
+    ws.send("数据");
+}
+ws.onerror = function(err){
+    return console.log(err);
+}
+// 关闭连接；
+// ws.close();
+</script>
+</html>

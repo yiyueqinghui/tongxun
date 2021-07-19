@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="./socket.io.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <h5>socket.io是websocket的封装，如果浏览器支持websocket则调用，否则会使用轮询异步请求</h5>
+    <button class="btn">点击我发送数据</button>
+</body>
+<script>
+let socket = io.connect("/");
+socket.on("getData",function(data){
+    console.log(data);
+})
+document.querySelector(".btn").onclick = function(){
+    socket.emit("addData","数据")
+}
+//
+</script>
+</html>
